@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.time.temporal.ChronoUnit;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -43,6 +44,7 @@ public class Reservation {
     }
 
     public Integer duration() {
+        /*
         Date newCheckIn = new Date();
         Date newCheckOut = new Date();
 
@@ -50,7 +52,11 @@ public class Reservation {
         LocalDate localDate2 = newCheckOut.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
         Long daysDifference = ChronoUnit.DAYS.between(localDate1, localDate2);
 
-        return Math.toIntExact(daysDifference);
+        return Math.toIntExact(daysDifference); 
+        */
+        
+        long diff = checkOut.getTime() - checkIn.getTime();
+        return TimeUnit.Days.convert(diff, TimeUnit.MILLISECONDS);
     }
 
     public void updateDates(Date newCheckIn, Date newCheckOut) {
@@ -60,15 +66,15 @@ public class Reservation {
     }
     @Override
     public String toString(){
-        return "Room "
-                + roomNumber 
-                + ", check-in: "
+        return "Room"
+                +roomNumber
+                +". check-in: "
                 + sdf.format(checkIn)
-                + ", check-out: "
-                + sdf.format(checkOut)
-                + ", "
+                +", check-out: "
+                +sdf.format(checkOut)
+                +", "
                 + duration()
-                + "nights";
+                +" nights";
     }
 
 }
