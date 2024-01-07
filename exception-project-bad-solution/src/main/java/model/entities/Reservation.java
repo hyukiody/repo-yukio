@@ -10,17 +10,13 @@ import java.util.Date;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeUnit;
 
-/**
- *
- * @author nomosa
- */
 public class Reservation {
 
     private Integer roomNumber;
     private Date checkIn;
     private Date checkOut;
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
-    
+
     public Reservation(Integer roomNumber, Date checkIn, Date checkOut) {
         this.roomNumber = roomNumber;
         this.checkIn = checkIn;
@@ -43,7 +39,7 @@ public class Reservation {
         return checkOut;
     }
 
-    public Integer duration() {
+    public long duration() {
         /*
         Date newCheckIn = new Date();
         Date newCheckOut = new Date();
@@ -53,10 +49,10 @@ public class Reservation {
         Long daysDifference = ChronoUnit.DAYS.between(localDate1, localDate2);
 
         return Math.toIntExact(daysDifference); 
-        */
-        
+         */
+
         long diff = checkOut.getTime() - checkIn.getTime();
-        return TimeUnit.Days.convert(diff, TimeUnit.MILLISECONDS);
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
     public void updateDates(Date newCheckIn, Date newCheckOut) {
@@ -64,17 +60,18 @@ public class Reservation {
         this.checkOut = checkOut;
 //diferenca do dia da data de checkin e checkout
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Room"
-                +roomNumber
-                +". check-in: "
+                + roomNumber
+                + ". check-in: "
                 + sdf.format(checkIn)
-                +", check-out: "
-                +sdf.format(checkOut)
-                +", "
+                + ", check-out: "
+                + sdf.format(checkOut)
+                + ", "
                 + duration()
-                +" nights";
+                + " nights";
     }
 
 }

@@ -9,10 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-/**
- *
- * @author nomosa
- */
+
 public class ExceptionProjectBadSolution {
 
     public static void main(String[] args) throws ParseException {
