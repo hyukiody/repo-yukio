@@ -65,10 +65,7 @@ public class Reservation {
         if (checkIn.before(checkOut)) {
             throw new DomainException("Check-Out date must be after check-in date.");
         }
-        if(RuntimeException e){
-            System.out.println("Unexpected error");
-    }
-        
+
         this.checkIn = checkIn;
         this.checkOut = checkOut;
 
